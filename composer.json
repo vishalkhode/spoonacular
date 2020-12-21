@@ -20,7 +20,12 @@
     "behat/mink-goutte-driver": "^1.2",
     "symfony/phpunit-bridge": "^5.2"
   },
-  "minimum-stability": "dev",
+  "repositories": {
+    "drupal": {
+      "type": "composer",
+      "url": "https://packages.drupal.org/8"
+    }
+  },
   "extra": {
     "drush": {
       "services": {
