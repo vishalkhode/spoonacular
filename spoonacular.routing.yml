@@ -2,6 +2,6 @@ spoonacular.admin_settings:
   path: '/admin/config/system/spoonacular'
   defaults:
     _form: '\Drupal\spoonacular\Form\SpoonacularConfigForm'
-    _title: 'Spooncular Config settings'
+    _title: 'Spoonacular Config settings'
   requirements:
-    _permission: 'administer spooncular'
+    _permission: 'administer spoonacular'

@@ -1,4 +1,4 @@
-name: Spooncular
+name: Spoonacular
 type: module
 description: 'This module is used to integrate drupal with Spooncular API.'
 core_version_requirement: ^8.8 || ^9

@@ -43,7 +43,7 @@ class SpoonacularConfigForm extends ConfigFormBase {
       '#title' => $this->t('Use Mock API'),
       '#default_value' => $config->get('use_mock'),
       '#description' => $this->t(
-        'Select this, if you wish to use Mock API instead of Spoonacular API ?'
+        'Select this, if you wish to use Mock API instead of Spoonacular API.'
       ),
     ];
 
@@ -93,7 +93,6 @@ class SpoonacularConfigForm extends ConfigFormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $values = $form_state->getValues();
-    // dump($values); die;.
     $this->config('spoonacular.settings')
       ->set('api_key', $values['api_key'])
       ->set('use_mock', $values['use_mock'])
