@@ -2,9 +2,7 @@
 
 namespace Drupal\spoonacular\Plugin\migrate\process;
 
-use Drupal\migrate\MigrateException;
 use Drupal\migrate\MigrateExecutableInterface;
-use Drupal\migrate\ProcessPluginBase;
 use Drupal\migrate\Row;
 use Drupal\migrate\Plugin\migrate\process\MigrationLookup;
 
@@ -24,7 +22,7 @@ class MapParagraph extends MigrationLookup {
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
     $recipe_id = $row->getSourceProperty('id');
     if (is_array($value)) {
-      foreach($value as $ingredient) {
+      foreach ($value as $ingredient) {
         $source_id = $recipe_id . '_' . preg_replace('/[^a-z]/m', '_', $ingredient['name']);
         $paragraph = parent::transform($source_id, $migrate_executable, $row, $destination_property);
         if ($paragraph) {
@@ -34,4 +32,5 @@ class MapParagraph extends MigrationLookup {
     }
     return $paragraph_ids ?? [];
   }
+
 }

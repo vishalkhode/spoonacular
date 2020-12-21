@@ -1,3 +1,4 @@
+# Migration configuration for Paragraph creation.
 id: paragraph_ingredient
 label: 'Migrate Paragraph Ingredients'
 
@@ -9,6 +10,8 @@ source:
   plugin: url
   data_fetcher_plugin: file
   data_parser_plugin: recipe_json
+  # Custom data_parser plugin (recipe_json) to create well formed input data.
+
   urls:
     - 'private://recipe.json'
   
@@ -73,9 +76,6 @@ process:
     source:
       - '@field_measurement_us'
       - '@field_measurement_metric'
-#  abcd:
-#    plugin: extract_value
-#    source: '@field_measurement'
 destination:
   plugin: 'entity_reference_revisions:paragraph'
   default_bundle: recipe_ingredient
@@ -89,4 +89,3 @@ dependencies:
 migration_dependencies:
   required:
     - ingredient_term
-#  optional: []

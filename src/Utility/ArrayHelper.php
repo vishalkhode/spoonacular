@@ -2,12 +2,18 @@
 
 namespace Drupal\spoonacular\Utility;
 
+/**
+ * Class ArrayHelper for perform different operations.
+ */
 class ArrayHelper {
 
   /**
-   * 
+   * Filters the duplicate entries in array.
+   *
    * @param array $array
-   * @param string $key
+   *   An input array.
+   * @param string $unique_key
+   *   Key which needs to look for filtering.
    */
   public static function filterDuplicates(array $array, string $unique_key) {
     $ids = array_column($array, $unique_key);
@@ -19,23 +25,27 @@ class ArrayHelper {
   }
 
   /**
-   * 
+   * Creates an uri with query parameters by replacing parameter placeholders.
+   *
    * @param string $uri
+   *   Input Uri.
    * @param array $params
+   *   An array of parameters.
    */
   public static function createUrl(string $uri, array $params) {
     $invalidParam = [];
     $url = $uri;
-    if (strpos($uri, ':') !== false) {
+    if (strpos($uri, ':') !== FALSE) {
       $urlParts = explode('/', $uri);
       $urlParts = array_filter($urlParts);
       $url = [];
-      foreach($urlParts as $urlPart) {
-        if (strpos($urlPart, ':') !== false) {
+      foreach ($urlParts as $urlPart) {
+        if (strpos($urlPart, ':') !== FALSE) {
           $param = ltrim($urlPart, ':');
           if (!isset($params[$param])) {
             $invalidParam[] = $param;
-          } else {
+          }
+          else {
             $urlPart = $params[$param];
             unset($params[$param]);
           }
@@ -48,8 +58,8 @@ class ArrayHelper {
       $url .= '?' . http_build_query($params);
     }
     return [
-      'url' => $url, 
-      'invalidParam' => $invalidParam
+      'url' => $url,
+      'invalidParam' => $invalidParam,
     ];
   }
 

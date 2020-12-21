@@ -1,27 +1,16 @@
+# Migration configuration for Media creation.
 id: media_recipe_ingredient
+label: Media Migration
 migration_group: recipe
 migration_tags:
   - images
 label: 'Migrate images to media'
 source:
-  # We use the JSON source plugin.
   plugin: url
-  # In this example we get data from a local file, to get data from a URL
-  # define http as data_fetcher_plugin.
-  # data_fetcher_plugin: http
   data_fetcher_plugin: file
   data_parser_plugin: file_json
-  # The data_parser normally limits the fields passed on to the source plugin
-  # to fields configured to be used as part of the migration. To support more
-  # dynamic migrations, the JSON data parser supports including the original
-  # data for the current row. Simply include the 'include_raw_data' flag set
-  # to `true` to enable this. This option is disabled by default to minimize
-  # memory footprint for migrations that do not need this capability.
-  # include_raw_data: true
-  # Flags whether to track changes to incoming data. If TRUE, we will maintain
-  # hashed source rows to determine whether incoming data has changed.
-  # track_changes: true
-  # Copy the example JSON file in artifacts folder to sites/default/files folder.
+  # Custom data_parser plugin (file_json) to create well formed input data.
+
   urls:
     - 'private://recipe.json'
   item_selector: ''
@@ -40,7 +29,7 @@ source:
   constants:
     username: 'migration'
 process:
-  pseudo_destination_filename:
+  _filename:
     -
       plugin: callback
       callable: basename
@@ -49,12 +38,12 @@ process:
       plugin: skip_on_empty
       method: row
       message: 'Cannot import empty filename.'
-  pseudo_destination_path:
+  _file_path:
     -
       plugin: concat
       source:
-        - '@pseudo_destination_filename'
-  name: '@pseudo_destination_filename'
+        - '@_filename'
+  name: '@_filename'
   field_media_image/target_id:
     plugin: migration_lookup
     migration: file_recipe_ingredient

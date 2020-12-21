@@ -17,7 +17,6 @@ use Drupal\Core\TypedData\DataDefinition;
  *   description = @Translation("Measurement.")
  * )
  */
-
 class MeasurementField extends FieldItemBase {
 
   /**

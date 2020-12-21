@@ -61,7 +61,7 @@ class SpoonacularConfigForm extends ConfigFormBase {
         ],
       ],
     ];
-    
+
     $form['credentials']['default_categories'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Default Categories'),
@@ -93,7 +93,7 @@ class SpoonacularConfigForm extends ConfigFormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $values = $form_state->getValues();
-    //dump($values); die;
+    // dump($values); die;.
     $this->config('spoonacular.settings')
       ->set('api_key', $values['api_key'])
       ->set('use_mock', $values['use_mock'])

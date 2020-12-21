@@ -1,28 +1,15 @@
-# Migration configuration for beer content.
+# Migration configuration for ingredient terms.
 id: ingredient_term
 label: Ingredients Migration
 migration_group: recipe
 migration_tags:
   - ingredient
 source:
-  # We use the JSON source plugin.
   plugin: url
-  # In this example we get data from a local file, to get data from a URL
-  # define http as data_fetcher_plugin.
-  # data_fetcher_plugin: http
   data_fetcher_plugin: file
   data_parser_plugin: ingredient_json
-  # The data_parser normally limits the fields passed on to the source plugin
-  # to fields configured to be used as part of the migration. To support more
-  # dynamic migrations, the JSON data parser supports including the original
-  # data for the current row. Simply include the 'include_raw_data' flag set
-  # to `true` to enable this. This option is disabled by default to minimize
-  # memory footprint for migrations that do not need this capability.
-  # include_raw_data: true
-  # Flags whether to track changes to incoming data. If TRUE, we will maintain
-  # hashed source rows to determine whether incoming data has changed.
-  # track_changes: true
-  # Copy the example JSON file in artifacts folder to sites/default/files folder.
+  # Custom data_parser plugin (ingredient_json) to create well formed input data.
+
   urls:
     - 'private://recipe.json'
   item_selector: ''
@@ -48,12 +35,7 @@ destination:
   #validate: true
 process:
   name: name
-  #body/format: "basic_html"
-  #body/value: recipe/instructions
 migration_dependencies: { }
-#  required:
-#    - beer_term
-#    - beer_user
 dependencies:
   enforced:
     module:

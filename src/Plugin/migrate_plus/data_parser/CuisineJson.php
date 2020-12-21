@@ -14,17 +14,24 @@ use Drupal\spoonacular\Utility\ArrayHelper;
  *   title = @Translation("Cuisine Parser JSON")
  * )
  */
-class CuisineJson extends Json implements ContainerFactoryPluginInterface {  
+class CuisineJson extends Json implements ContainerFactoryPluginInterface {
+
+  /**
+   * {@inheritdoc}
+   */
   protected function getSourceData($url) {
     $response = parent::getSourceData($url);
     $cuisines_data = $this->createSourceData($response);
     return ArrayHelper::filterDuplicates($cuisines_data, 'name');
   }
 
+  /**
+   * Parse the input data and create source data for image file migration.
+   */
   protected function createSourceData(array $source_data) {
-    foreach($source_data['results'] as $result) {
+    foreach ($source_data['results'] as $result) {
       if (isset($result['recipe']['cuisines'])) {
-        foreach($result['recipe']['cuisines'] as $cuisine) {
+        foreach ($result['recipe']['cuisines'] as $cuisine) {
           $returnData[] = ['name' => $cuisine];
         }
       }

@@ -5,29 +5,34 @@ namespace Drupal\Tests\spoonacular\Functional;
 use Drupal\Tests\BrowserTestBase;
 use Drupal\migrate\MigrateExecutable;
 use Drupal\migrate\MigrateMessage;
-use Drupal\migrate\Plugin\MigrationInterface;
-use Drupal\migrate_plus\Entity\Migration;
 use Drupal\Tests\spoonacular\Traits\MigrationTrait;
 
 /**
- * Description of SpoonacularMigrateTest
+ * Functional unit test to verify recipe migration.
  *
- * @author vishalkhode
+ * @group spoonacular
  */
 class SpoonacularMigrateTest extends BrowserTestBase {
 
   use MigrationTrait;
 
+  /**
+   * DefaultTheme to install.
+   *
+   * @var string
+   */
   protected $defaultTheme = 'classy';
-   /**
+
+  /**
    * {@inheritdoc}
    */
   protected static $modules = [
     'spoonacular',
     'taxonomy',
     'menu_ui',
-    'migrate_plus'
+    'migrate_plus',
   ];
+
   /**
    * {@inheritdoc}
    */
@@ -38,13 +43,16 @@ class SpoonacularMigrateTest extends BrowserTestBase {
     $this->drupalLogin($user);
   }
 
+  /**
+   * Tests sample recipe data content.
+   */
   public function testDataExist() {
     $data = $this->getDataJson();
     $this->assertNotEmpty($data);
   }
 
   /**
-   * Make sure the site still works. For now just check the front page.
+   * Verify if recipe content is migrated.
    */
   public function testMigrateContent() {
     $migration_id = 'recipe_node';
@@ -53,8 +61,11 @@ class SpoonacularMigrateTest extends BrowserTestBase {
     $executable = new MigrateExecutable($migration, new MigrateMessage());
     $executable->import();
   }
-  
-  public function testRecipes() {    
+
+  /**
+   * Tests the recipe listing page.
+   */
+  public function testRecipes() {
     $this->drupalGet('/recipes');
     $this->assertSession()->statusCodeEquals(200);
   }

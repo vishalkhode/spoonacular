@@ -6,6 +6,8 @@ use Drupal\Tests\UnitTestCase;
 use Drupal\spoonacular\Utility\ArrayHelper;
 
 /**
+ * ArrayHelperTest is to test the ArrayHelper Class.
+ *
  * @group spoonacular
  */
 class ArrayHelperTest extends UnitTestCase {
@@ -18,14 +20,14 @@ class ArrayHelperTest extends UnitTestCase {
    * @param array $expected
    *   Array which does not contain duplicate data for given key.
    *
-   * @see Drupal\spoonacular\Plugin\migrate_plus\data_parser\CuisineJson::getSourceData().
-   * @see Drupal\spoonacular\Plugin\migrate_plus\data_parser\FileJson::getSourceData().
-   * @see Drupal\spoonacular\Plugin\migrate_plus\data_parser\IngredientJson::getSourceData().
-   * @see Drupal\spoonacular\Plugin\migrate_plus\data_parser\RecipeJson::getSourceData().
-   * 
+   * @see Drupal\spoonacular\Plugin\migrate_plus\data_parser\CuisineJson::getSourceData()
+   * @see Drupal\spoonacular\Plugin\migrate_plus\data_parser\FileJson::getSourceData()
+   * @see Drupal\spoonacular\Plugin\migrate_plus\data_parser\IngredientJson::getSourceData()
+   * @see Drupal\spoonacular\Plugin\migrate_plus\data_parser\RecipeJson::getSourceData()
+   *
    * @dataProvider providerTestArrayFilter
    */
-  public function testArrayFilter($actual, $expected) {
+  public function testArrayFilter(array $actual, array $expected) {
     $this->assertEquals($expected, ArrayHelper::filterDuplicates($actual, 'unique'));
   }
 
@@ -33,9 +35,10 @@ class ArrayHelperTest extends UnitTestCase {
    * Data provider for providerTestArrayFilter().
    *
    * @return array
+   *   Returns an array of actual & expected tests for array filter function.
    */
   public function providerTestArrayFilter() {
-    $test_parameters = [];    
+    $test_parameters = [];
     $test_parameters[] = [
       'actual' => [
         [
@@ -51,7 +54,7 @@ class ArrayHelperTest extends UnitTestCase {
           'id' => 2,
         ],
       ],
-      'expected'=> [
+      'expected' => [
         [
           'unique' => 'abcd@!',
           'id' => 1,
@@ -59,13 +62,13 @@ class ArrayHelperTest extends UnitTestCase {
         [
           'unique' => 'xyzu',
           'id' => 2,
-        ]
-      ]
+        ],
+      ],
     ];
     return $test_parameters;
   }
 
- /**
+  /**
    * Tests the Url generation helper method.
    *
    * @param array $actual
@@ -77,7 +80,7 @@ class ArrayHelperTest extends UnitTestCase {
    *
    * @dataProvider providerTestUrlGeneration
    */
-  public function testUrlGeneration($actual, $expected) {
+  public function testUrlGeneration(array $actual, array $expected) {
     $this->assertEquals($expected, ArrayHelper::createUrl($actual[0], $actual[1]));
   }
 
@@ -85,6 +88,7 @@ class ArrayHelperTest extends UnitTestCase {
    * Data provider for testUrlGeneration().
    *
    * @return array
+   *   Returns an array of actual & expected tests for createUrl method.
    */
   public function providerTestUrlGeneration() {
     $test_parameters = [];
@@ -92,7 +96,7 @@ class ArrayHelperTest extends UnitTestCase {
       'actual' => ['/some/path', ['param1' => 1, 'param2' => 2]],
       'expected' => [
         'url' => '/some/path?param1=1&param2=2',
-        'invalidParam'=> []
+        'invalidParam' => [],
       ],
     ];
 
@@ -100,7 +104,7 @@ class ArrayHelperTest extends UnitTestCase {
       'actual' => ['/some/:id', ['id' => 1, 'param2' => 2]],
       'expected' => [
         'url' => '/some/1?param2=2',
-        'invalidParam'=> []
+        'invalidParam' => [],
       ],
     ];
 
@@ -108,10 +112,10 @@ class ArrayHelperTest extends UnitTestCase {
       'actual' => ['/some/:id/path', ['param2' => 2]],
       'expected' => [
         'url' => '/some/:id/path?param2=2',
-        'invalidParam'=> ['id']
+        'invalidParam' => ['id'],
       ],
     ];
-    return $test_parameters; 
+    return $test_parameters;
   }
 
 }

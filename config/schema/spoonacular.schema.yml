@@ -4,7 +4,7 @@ field.storage_settings.measurement:
   mapping:
     storage:
       type: mapping
-      label: Double Field storage settings
+      label: Measurement Field storage settings
       mapping:
         type:
           type: spoonacular_storage_type_settings
@@ -15,7 +15,7 @@ field.storage_settings.measurement:
 
 spoonacular_storage_type_settings:
   type: mapping
-  label: Type Storage subfield settings
+  label: Spoonacular storage sub settings
   mapping:
     type:
       type: string
@@ -28,17 +28,15 @@ field.value.measurement:
   type: mapping
   label: Default value
   mapping:
-    # Treat these values as strings. The actual subfield types depend on field
-    # storage configuration.
     type:
       type: string
-      label: First subfield
+      label: Type subfield
     quantity:
       type: string
-      label: Second subfield
+      label: Quantity subfield
     unit:
       type: string
-      label: Second subfield
+      label: Unit subfield
 
 spoonacular.settings:
   type: config_object
