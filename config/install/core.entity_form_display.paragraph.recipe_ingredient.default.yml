@@ -1,0 +1,41 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.recipe_ingredient.field_ingredient
+    - field.field.paragraph.recipe_ingredient.field_measurement
+    - field.field.paragraph.recipe_ingredient.field_title
+    - paragraphs.paragraphs_type.recipe_ingredient
+  enforced:
+    module:
+      - spoonacular
+  module:
+    - spoonacular
+id: paragraph.recipe_ingredient.default
+targetEntityType: paragraph
+bundle: recipe_ingredient
+mode: default
+content:
+  field_ingredient:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_measurement:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: measurement_widget
+    region: content
+  field_title:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  status: true

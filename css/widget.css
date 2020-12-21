@@ -1,0 +1,12 @@
+.measurement-field-widget-inline {
+  display: flex;
+}
+
+.measurement-field-widget-inline > div {
+  margin-right: 0.75em !important;
+}
+
+.field--type-measurement .field-multiple-drag,
+.field--type-measurement .tabledrag-toggle-weight {
+  visibility: hidden;
+}

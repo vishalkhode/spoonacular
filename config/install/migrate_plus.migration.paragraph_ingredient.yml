@@ -1,0 +1,92 @@
+id: paragraph_ingredient
+label: 'Migrate Paragraph Ingredients'
+
+migration_group: recipe
+migration_tags:
+  - paragraph
+
+source:
+  plugin: url
+  data_fetcher_plugin: file
+  data_parser_plugin: recipe_json
+  urls:
+    - 'private://recipe.json'
+  
+  item_selector: ''
+
+  fields:
+    - 
+      name: title
+      label: 'Title'
+      selector: originalName
+    -
+      name: para_id
+      label: 'Id of the Recipe'
+      selector: para_id
+    -
+      name: ingredient_name
+      label: 'Ingredient Id'
+      selector: ingredient_name
+    -
+      name: us_measures_quantity
+      label: 'US Measurement quantity'
+      selector: measures/us/amount
+    -
+      name: us_measures_unit
+      label: 'US Measurement Unit'
+      selector: measures/us/unitShort
+    -
+      name: metric_measures_quantity
+      label: 'Metric Measurement amount'
+      selector: measures/metric/amount
+    -
+      name: metric_measures_unit
+      label: 'Metric Measurement Unit'
+      selector: measures/metric/unitShort
+  ids:
+    para_id:
+      type: string
+
+process:
+  field_title: title
+  field_ingredient:
+    plugin: migration_lookup
+    migration: ingredient_term
+    source: ingredient_name
+    no_stub: true
+
+  field_measurement_us/type:
+    plugin: default_value
+    default_value: 'us'
+  field_measurement_us/quantity: us_measures_quantity
+  field_measurement_us/unit: us_measures_unit
+  
+  field_measurement_metric/type:
+    plugin: default_value
+    default_value: 'metric'
+  field_measurement_metric/quantity: metric_measures_quantity
+  field_measurement_metric/unit: metric_measures_unit
+  
+  field_measurement:
+    plugin: callback
+    callable: array_merge
+    source:
+      - '@field_measurement_us'
+      - '@field_measurement_metric'
+#  abcd:
+#    plugin: extract_value
+#    source: '@field_measurement'
+destination:
+  plugin: 'entity_reference_revisions:paragraph'
+  default_bundle: recipe_ingredient
+  #validate: true
+
+dependencies:
+  enforced:
+    module:
+      - spoonacular
+
+migration_dependencies:
+  required:
+    - ingredient_term
+#  optional: []

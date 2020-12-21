@@ -1,0 +1,13 @@
+langcode: en
+status: true
+dependencies: {  }
+id: recipe_ingredient
+label: 'Recipe Ingredient'
+icon_uuid: null
+icon_default: null
+description: 'Use this paragraph to add ingredients to recipes.'
+behavior_plugins: {  }
+dependencies:
+  enforced:
+    module:
+      - spoonacular

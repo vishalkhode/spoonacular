@@ -1,0 +1,37 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the spoonacular module.
+ */
+
+use Drupal\migrate\Plugin\Migration;
+use Drupal\migrate\MigrateExecutable;
+use Drupal\migrate\MigrateMessage;
+use Drupal\migrate\Plugin\MigrationInterface;
+use Drupal\user\Entity\User;
+
+/**
+ * Implements hook_install().
+ *
+ * Perform actions to set up the site for this profile.
+ *
+ */
+function spoonacular_cron() {
+  $run_cron = \Drupal::config('spoonacular.settings')->get('run_cron') ?? FALSE;
+  if ($run_cron) {
+    if (\Drupal::service('spoonacular_client')->generateRecipes()) {
+      foreach(['ingredient_term','file_recipe_ingredient', 'media_recipe_ingredient', 'cuisine_term', 'paragraph_ingredient', 'recipe_node'] as $migration_id) {
+        $migration = \Drupal::service('plugin.manager.migration')->createInstance($migration_id);
+        if ($migration->getStatus() != MigrationInterface::STATUS_IDLE) {
+          $migration->setStatus(MigrationInterface::STATUS_IDLE);
+        }
+        $migration->getIdMap()->prepareUpdate();
+        $executable = new MigrateExecutable($migration, new MigrateMessage());
+        $executable->import();
+      }
+    }
+  }
+}
+
+

@@ -1,0 +1,75 @@
+{
+  "results": [
+    {
+      "id": 716426,
+      "title": "Cauliflower, Brown Rice, and Vegetable Fried Rice",
+      "image": "https://spoonacular.com/recipeImages/716426-312x231.jpg",
+      "recipe": {
+        "videos": [
+          {
+            "youTubeId": "3ZBbG0pWnQk"
+          }
+        ],
+        "cuisines": [
+          "Chinese",
+          "Asian"
+        ],
+        "extendedIngredients": [
+          {
+            "id": 11090,
+            "name": "Produce",
+            "image": "broccoli.jpg",
+            "originalName": "cooked broccoli, chopped small",
+            "measures": {
+              "us": {
+                "amount": 2,
+                "unitShort": "cups",
+                "unitLong": "cups"
+              },
+              "metric": {
+                "amount": 473.176,
+                "unitShort": "ml",
+                "unitLong": "milliliters"
+              }
+            }
+          },
+          {
+            "id": 11135,
+            "image": "cauliflower.jpg",
+            "name": "cauliflower",
+            "originalName": "cauliflower, raw",
+            "measures": {
+              "us": {
+                "amount": 1,
+                "unitShort": "head",
+                "unitLong": "head"
+              },
+              "metric": {
+                "amount": 1,
+                "unitShort": "head",
+                "unitLong": "head"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": 798400,
+      "title": "Spicy Black-Eyed Pea Curry with Swiss Chard and Roasted Eggplant",
+      "image": "https://spoonacular.com/recipeImages/798400-312x231.jpg",
+      "recipe": {
+        "videos": [],
+        "cuisines": [
+          "Italian"
+        ],
+        "extendedIngredients": []
+      }
+    },
+    {
+      "id": 644826,
+      "title": "Gluten Free Dairy Free Sugar Free Chinese Chicken Salad",
+      "image": "https://spoonacular.com/recipeImages/644826-312x231.jpg"
+    }
+  ]
+}

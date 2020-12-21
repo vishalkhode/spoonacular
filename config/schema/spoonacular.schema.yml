@@ -1,0 +1,57 @@
+field.storage_settings.measurement:
+  type: mapping
+  label: Storage measurement settings
+  mapping:
+    storage:
+      type: mapping
+      label: Double Field storage settings
+      mapping:
+        type:
+          type: spoonacular_storage_type_settings
+        quantity:
+          type: spoonacular_storage_type_settings
+        unit:
+          type: spoonacular_storage_type_settings
+
+spoonacular_storage_type_settings:
+  type: mapping
+  label: Type Storage subfield settings
+  mapping:
+    type:
+      type: string
+      label: Type
+    maxlength:
+      type: string
+      label: Maxlength
+
+field.value.measurement:
+  type: mapping
+  label: Default value
+  mapping:
+    # Treat these values as strings. The actual subfield types depend on field
+    # storage configuration.
+    type:
+      type: string
+      label: First subfield
+    quantity:
+      type: string
+      label: Second subfield
+    unit:
+      type: string
+      label: Second subfield
+
+spoonacular.settings:
+  type: config_object
+  mapping:
+    api_key:
+      type: string
+      label: 'Spoonacular Api Key'
+    use_mock:
+      type: boolean
+      label: 'Use Mock API ?'
+    default_categories:
+      type: string
+      label: 'Default categories to import.'
+    run_cron:
+      type: boolean
+      label: 'Import recipes during cron ?'

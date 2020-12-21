@@ -1,0 +1,11 @@
+langcode: en
+status: true
+dependencies: {  }
+name: Cuisine
+vid: cuisine
+description: 'Use this to add different cuisines.'
+weight: 0
+dependencies:
+  enforced:
+    module:
+      - spoonacular

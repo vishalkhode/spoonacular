@@ -1,0 +1,31 @@
+{
+  "name": "vishal/spoonacular",
+  "description": "Spoonacular module and dependencies.",
+  "type": "drupal-module",
+  "homepage": "http://drupal.org/project/spoonacular",
+  "support": {
+    "source": "http://cgit.drupalcode.org/spoonacular"
+  },
+  "license": "GPL-2.0-or-later",
+  "require": {
+    "drupal/migrate_plus": "^5.1",
+    "drupal/migrate_tools": "^5.0",
+    "drupal/paragraphs": "^1.12",
+    "drupal/video_embed_field": "^2.4",
+    "drush/drush": "^10.3"
+  },
+  "require-dev": {
+    "phpspec/prophecy-phpunit": "^2",
+    "phpunit/phpunit": "^9.5",
+    "behat/mink-goutte-driver": "^1.2",
+    "symfony/phpunit-bridge": "^5.2"
+  },
+  "minimum-stability": "dev",
+  "extra": {
+    "drush": {
+      "services": {
+        "drush.services.yml": "^9 || ^10"
+      }
+    }
+  }
+}

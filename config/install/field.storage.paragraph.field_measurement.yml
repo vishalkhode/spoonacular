@@ -1,0 +1,32 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+    - spoonacular
+id: paragraph.field_measurement
+field_name: field_measurement
+entity_type: paragraph
+type: measurement
+settings:
+  storage:
+    type:
+      type: string
+      maxlength: '30'
+    quantity:
+      type: string
+      maxlength: '255'
+    unit:
+      type: string
+      maxlength: '30'
+module: spoonacular
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
+dependencies:
+  enforced:
+    module:
+      - spoonacular

@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.recipe_ingredient.field_ingredient
+    - field.field.paragraph.recipe_ingredient.field_measurement
+    - field.field.paragraph.recipe_ingredient.field_title
+    - paragraphs.paragraphs_type.recipe_ingredient
+  enforced:
+    module:
+      - spoonacular
+id: paragraph.recipe_ingredient.default
+targetEntityType: paragraph
+bundle: recipe_ingredient
+mode: default
+content:
+  field_ingredient:
+    weight: 0
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+hidden:
+  field_measurement: true
+  field_title: true

@@ -1,0 +1,4 @@
+api_key: ''
+use_mock: TRUE
+default_categories: 'Asian, Italian, Mexican, Barbecue, Continental, Chinese'
+run_cron: TRUE

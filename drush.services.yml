@@ -1,0 +1,6 @@
+services:
+  spoonacular.commands:
+    class: \Drupal\spoonacular\Commands\SpoonacularCommands
+    arguments: ['@plugin.manager.migration', '@date.formatter', '@entity_type.manager', '@keyvalue', '@config.factory', '@spoonacular_client']
+    tags:
+      - { name: drush.command }

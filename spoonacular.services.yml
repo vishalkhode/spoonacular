@@ -1,0 +1,9 @@
+services:
+  logger.channel.spoonacular:
+    class: Drupal\Core\Logger\LoggerChannel
+    factory: logger.factory:get
+    arguments: ['spoonacular']
+
+  spoonacular_client:
+    class: Drupal\spoonacular\SpoonacularClient
+    arguments: ['@http_client_factory', '@logger.channel.spoonacular', '@config.factory']

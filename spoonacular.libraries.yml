@@ -1,0 +1,4 @@
+measurement:
+  css:
+    theme:
+      css/widget.css: {}

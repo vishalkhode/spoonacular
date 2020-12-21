@@ -1,0 +1,127 @@
+# Migration configuration for beer content.
+id: recipe_node
+label: Recipe Migration
+migration_group: recipe
+migration_tags:
+  - recipe
+
+source:
+  # We use the JSON source plugin.
+  plugin: url
+  # In this example we get data from a local file, to get data from a URL
+  # define http as data_fetcher_plugin.
+  # data_fetcher_plugin: http
+  data_fetcher_plugin: file
+  data_parser_plugin: json
+  # The data_parser normally limits the fields passed on to the source plugin
+  # to fields configured to be used as part of the migration. To support more
+  # dynamic migrations, the JSON data parser supports including the original
+  # data for the current row. Simply include the 'include_raw_data' flag set
+  # to `true` to enable this. This option is disabled by default to minimize
+  # memory footprint for migrations that do not need this capability.
+  # include_raw_data: true
+  # Flags whether to track changes to incoming data. If TRUE, we will maintain
+  # hashed source rows to determine whether incoming data has changed.
+  # track_changes: true
+  # Copy the example JSON file in artifacts folder to sites/default/files folder.
+  urls:
+    - 'private://recipe.json'
+  item_selector: results
+  fields:
+    -
+      name: title
+      label: 'Title of the recipe'
+      selector: title
+    -
+      name: id
+      label: 'Id of the recipe'
+      selector: id
+    -
+      name: recipe
+      label: 'Recipe details'
+      selector: recipe
+  ids:
+    id:
+      type: integer
+  constants:
+    entity_type: 'recipe'
+    username: 'migration'
+    youtube_base_url: 'https://www.youtube.com/watch?v='
+destination:
+  plugin: entity:node
+  #validate: true
+process:
+  # Hardcode the destination node type (bundle) as 'migrate_example_beer'.
+  type:
+    plugin: default_value
+    default_value: 'recipe'
+  title: title
+  body/format:
+    plugin: default_value
+    default_value: "basic_html"
+  body/value: recipe/instructions
+  
+  _media_lookup_source:
+    plugin: concat
+    source:
+      - id
+      - constants/entity_type
+    delimiter: ":"
+  field_recipe_image:
+    plugin: migration_lookup
+    migration: media_recipe_ingredient
+    source: '@_media_lookup_source'
+    no_stub: true
+
+  field_categories:
+    plugin: entity_lookup
+    source: recipe/cuisines
+    value_key: name
+    bundle_key: vid
+    bundle: cuisine
+    entity_type: taxonomy_term
+    ignore_case: true
+
+  field_ingredient:
+    plugin: map_paragraph
+    source: recipe/extendedIngredients
+    migration: paragraph_ingredient
+    no_stub: true
+
+  _youtubeId:
+    plugin: concat
+    source:
+      - constants/youtube_base_url
+      - recipe/videos/0/youTubeId
+
+  field_video: 
+    -
+      plugin: skip_on_empty
+      method: process
+      source: recipe/videos/0/youTubeId
+    -
+      plugin: default_value
+      source: '@_youtubeId'
+
+#  abcd:
+#    plugin: extract_value
+#    source: '@field_categories'
+
+  uid:
+    plugin: entity_lookup
+    source: constants/username
+    value_key: name
+    entity_type: user
+    bundle: user
+    ignore_case: true
+migration_dependencies:
+  required:
+    - ingredient_term
+    - paragraph_ingredient
+    - file_recipe_ingredient
+    - media_recipe_ingredient
+    - cuisine_term
+dependencies:
+  enforced:
+    module:
+      - spoonacular

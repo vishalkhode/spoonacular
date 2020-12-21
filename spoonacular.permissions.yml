@@ -1,0 +1,7 @@
+administer spoonacular:
+  description: 'Administer Spoonacular Settings.'
+  title: 'Administer Spoonacular Settings'
+  restrict access: TRUE
+create recipe create:
+  description: 'Create recipe content.'
+  title: 'Create recipe content.'
