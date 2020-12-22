@@ -1,10 +1,9 @@
 # Migration configuration for Media creation.
 id: media_recipe_ingredient
-label: Media Migration
+label: 'Migrate images to media'
 migration_group: recipe
 migration_tags:
   - images
-label: 'Migrate images to media'
 source:
   plugin: url
   data_fetcher_plugin: file

@@ -24,6 +24,13 @@ class SpoonacularMigrateTest extends BrowserTestBase {
   protected $defaultTheme = 'classy';
 
   /**
+   * Use Standard profile.
+   *
+   * @var string
+   */
+  protected $profile = 'standard';
+
+  /**
    * {@inheritdoc}
    */
   protected static $modules = [
@@ -31,6 +38,7 @@ class SpoonacularMigrateTest extends BrowserTestBase {
     'taxonomy',
     'menu_ui',
     'migrate_plus',
+    'media',
   ];
 
   /**

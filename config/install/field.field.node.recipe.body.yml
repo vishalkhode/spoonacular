@@ -4,6 +4,9 @@ dependencies:
   config:
     - field.storage.node.body
     - node.type.recipe
+  enforced:
+    module:
+      - spoonacular
   module:
     - text
 id: node.recipe.body
@@ -20,7 +23,3 @@ settings:
   display_summary: true
   required_summary: false
 field_type: text_with_summary
-dependencies:
-  enforced:
-    module:
-      - spoonacular

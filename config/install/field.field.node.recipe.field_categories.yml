@@ -5,6 +5,9 @@ dependencies:
     - field.storage.node.field_categories
     - node.type.recipe
     - taxonomy.vocabulary.cuisine
+  enforced:
+    module:
+      - spoonacular
 id: node.recipe.field_categories
 field_name: field_categories
 entity_type: node
@@ -26,7 +29,3 @@ settings:
     auto_create: false
     auto_create_bundle: ''
 field_type: entity_reference
-dependencies:
-  enforced:
-    module:
-      - spoonacular

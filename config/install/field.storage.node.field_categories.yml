@@ -4,6 +4,9 @@ dependencies:
   module:
     - node
     - taxonomy
+  enforced:
+    module:
+      - spoonacular
 id: node.field_categories
 field_name: field_categories
 entity_type: node
@@ -17,7 +20,3 @@ translatable: true
 indexes: {  }
 persist_with_no_fields: false
 custom_storage: false
-dependencies:
-  enforced:
-    module:
-      - spoonacular

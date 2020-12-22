@@ -5,6 +5,9 @@ dependencies:
     - field.storage.paragraph.field_ingredient
     - paragraphs.paragraphs_type.recipe_ingredient
     - taxonomy.vocabulary.ingredients
+  enforced:
+    module:
+      - spoonacular
 id: paragraph.recipe_ingredient.field_ingredient
 field_name: field_ingredient
 entity_type: paragraph
@@ -26,7 +29,3 @@ settings:
     auto_create: false
     auto_create_bundle: ''
 field_type: entity_reference
-dependencies:
-  enforced:
-    module:
-      - spoonacular

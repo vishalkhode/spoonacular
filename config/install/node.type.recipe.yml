@@ -1,6 +1,9 @@
 langcode: en
 status: true
 dependencies:
+  enforced:
+    module:
+      - spoonacular
   module:
     - menu_ui
 third_party_settings:
@@ -15,7 +18,3 @@ help: ''
 new_revision: true
 preview_mode: 1
 display_submitted: true
-dependencies:
-  enforced:
-    module:
-      - spoonacular

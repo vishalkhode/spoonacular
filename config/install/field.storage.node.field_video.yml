@@ -4,6 +4,9 @@ dependencies:
   module:
     - node
     - video_embed_field
+  enforced:
+    module:
+      - spoonacular
 id: node.field_video
 field_name: field_video
 entity_type: node
@@ -16,7 +19,3 @@ translatable: true
 indexes: {  }
 persist_with_no_fields: false
 custom_storage: false
-dependencies:
-  enforced:
-    module:
-      - spoonacular

@@ -1,11 +1,10 @@
 langcode: en
 status: true
-dependencies: {  }
-name: Ingredients
-vid: ingredients
-description: 'Use this to add different ingredients.'
-weight: 0
 dependencies:
   enforced:
     module:
       - spoonacular
+name: Ingredients
+vid: ingredients
+description: 'Use this to add different ingredients.'
+weight: 0

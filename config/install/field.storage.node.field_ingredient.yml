@@ -5,6 +5,9 @@ dependencies:
     - entity_reference_revisions
     - node
     - paragraphs
+  enforced:
+    module:
+      - spoonacular
 id: node.field_ingredient
 field_name: field_ingredient
 entity_type: node
@@ -18,7 +21,3 @@ translatable: true
 indexes: {  }
 persist_with_no_fields: false
 custom_storage: false
-dependencies:
-  enforced:
-    module:
-      - spoonacular

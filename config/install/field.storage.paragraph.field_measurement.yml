@@ -4,6 +4,9 @@ dependencies:
   module:
     - paragraphs
     - spoonacular
+  enforced:
+    module:
+      - spoonacular
 id: paragraph.field_measurement
 field_name: field_measurement
 entity_type: paragraph
@@ -26,7 +29,3 @@ translatable: true
 indexes: {  }
 persist_with_no_fields: false
 custom_storage: false
-dependencies:
-  enforced:
-    module:
-      - spoonacular

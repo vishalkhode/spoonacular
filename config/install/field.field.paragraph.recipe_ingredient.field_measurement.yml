@@ -6,6 +6,9 @@ dependencies:
     - paragraphs.paragraphs_type.recipe_ingredient
   module:
     - spoonacular
+  enforced:
+    module:
+      - spoonacular
 id: paragraph.recipe_ingredient.field_measurement
 field_name: field_measurement
 entity_type: paragraph
@@ -26,7 +29,3 @@ default_value:
 default_value_callback: ''
 settings: {  }
 field_type: measurement
-dependencies:
-  enforced:
-    module:
-      - spoonacular

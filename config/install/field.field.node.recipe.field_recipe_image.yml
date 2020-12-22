@@ -1,6 +1,9 @@
 langcode: en
 status: true
 dependencies:
+  enforced:
+    module:
+      - spoonacular
   config:
     - field.storage.node.field_recipe_image
     - media.type.image
@@ -26,7 +29,3 @@ settings:
     auto_create: false
     auto_create_bundle: ''
 field_type: entity_reference
-dependencies:
-  enforced:
-    module:
-      - spoonacular

@@ -5,6 +5,9 @@ dependencies:
     - field.storage.node.field_ingredient
     - node.type.recipe
     - paragraphs.paragraphs_type.recipe_ingredient
+  enforced:
+    module:
+      - spoonacular
   module:
     - entity_reference_revisions
 id: node.recipe.field_ingredient
@@ -28,7 +31,3 @@ settings:
         enabled: true
         weight: 2
 field_type: entity_reference_revisions
-dependencies:
-  enforced:
-    module:
-      - spoonacular
